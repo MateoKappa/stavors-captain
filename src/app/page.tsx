@@ -1,5 +1,6 @@
 import Image from "next/image";
 import {
+  Anchor,
   ChevronDown,
   Clock,
   Compass,
@@ -11,8 +12,8 @@ import {
   Sun,
   Users,
   Waves,
-  Anchor,
 } from "lucide-react";
+import MobileNav from "./mobile-nav";
 
 const PHONE = "+306980316639";
 const PHONE_DISPLAY = "+30 698 031 6639";
@@ -37,26 +38,27 @@ function WhatsAppIcon({ className }: { className?: string }) {
 function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-cream/80 border-b border-sand/50">
-      <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
-        <a href="#hero" className="flex items-center gap-3 group">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between">
+        <a href="#hero" className="flex items-center gap-2 sm:gap-3 group">
           <Image
             src="/images/Logo.jpg"
             alt="Captain Stavros Fishing Tourism logo"
-            width={52}
-            height={52}
-            className="rounded-full"
+            width={44}
+            height={44}
+            className="rounded-full sm:w-[52px] sm:h-[52px]"
             priority
           />
-          <div className="hidden sm:block">
-            <span className="font-[family-name:var(--font-playfair)] text-lg font-bold text-navy tracking-wide">
+          <div>
+            <span className="font-[family-name:var(--font-playfair)] text-base sm:text-lg font-bold text-navy tracking-wide">
               Captain Stavros
             </span>
-            <span className="block text-[10px] uppercase tracking-[0.25em] text-text-muted font-medium -mt-0.5">
+            <span className="block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-text-muted font-medium -mt-0.5">
               Fishing Tourism
             </span>
           </div>
         </a>
 
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-text-muted">
           <a href="#experience" className="hover:text-navy transition-colors">
             Experience
@@ -75,6 +77,9 @@ function Navbar() {
             Book Now
           </a>
         </div>
+
+        {/* Mobile hamburger menu */}
+        <MobileNav whatsappUrl={WHATSAPP_URL} phone={PHONE} />
       </div>
     </nav>
   );
@@ -97,77 +102,68 @@ function Hero() {
         <div className="absolute inset-0 bg-linear-to-b from-navy/60 via-navy/40 to-navy/70 z-10" />
       </div>
 
-      <div className="relative z-20 max-w-5xl mx-auto px-6 text-center pt-24 pb-16">
+      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-24 pb-12 sm:pb-16">
         {/* Logo badge */}
-        <div className="animate-fade-in-up mb-6">
+        <div className="animate-fade-in-up mb-5 sm:mb-6">
           <Image
             src="/images/Logo.jpg"
             alt="Captain Stavros logo"
-            width={100}
-            height={100}
-            className="rounded-full mx-auto border-2 border-white/20 shadow-2xl"
+            width={80}
+            height={80}
+            className="rounded-full mx-auto border-2 border-white/20 shadow-2xl sm:w-[100px] sm:h-[100px]"
             priority
           />
         </div>
 
-        <div className="animate-fade-in-up delay-100 inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-5 py-2 mb-8">
-          <MapPin className="w-4 h-4 text-gold" />
-          <span className="text-sm font-medium text-white/80 tracking-wide">
+        <div className="animate-fade-in-up delay-100 inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 sm:px-5 py-2 mb-6 sm:mb-8">
+          <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold" />
+          <span className="text-xs sm:text-sm font-medium text-white/80 tracking-wide">
             Skiathos Island, Greece
           </span>
         </div>
 
-        <h1 className="animate-fade-in-up delay-200 font-[family-name:var(--font-playfair)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] tracking-tight drop-shadow-lg">
+        <h1 className="animate-fade-in-up delay-200 font-[family-name:var(--font-playfair)] text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] sm:leading-[1.05] tracking-tight drop-shadow-lg">
           Experience Authentic
           <br />
           <span className="relative inline-block">
             <span className="relative z-10">Fishing</span>
-            <span className="absolute bottom-2 left-0 right-0 h-3 md:h-4 bg-gold/30 z-0 rounded-sm" />
+            <span className="absolute bottom-1 sm:bottom-2 left-0 right-0 h-2.5 sm:h-3 md:h-4 bg-gold/30 z-0 rounded-sm" />
           </span>{" "}
           in Skiathos
         </h1>
 
-        <p className="animate-fade-in-up delay-300 mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+        <p className="animate-fade-in-up delay-300 mt-5 sm:mt-8 text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
           Step aboard a traditional wooden boat and live the life of a Greek
           fisherman. Crystal-clear waters, freshly caught seafood, and hidden
           bays await you.
         </p>
 
-        <div className="animate-fade-in-up delay-500 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="animate-fade-in-up delay-500 mt-8 sm:mt-10">
           <a
-            href={`tel:${PHONE}`}
-            className="cta-phone inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-bold tracking-wide"
+            href="#booking"
+            className="cta-phone inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-full text-base sm:text-lg font-bold tracking-wide"
           >
-            <Phone className="w-5 h-5" />
-            Call to Book Now
-          </a>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cta-whatsapp inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-bold tracking-wide"
-          >
-            <WhatsAppIcon className="w-5 h-5" />
-            WhatsApp Us
+            Book Your Spot
+            <ChevronDown className="w-5 h-5 -rotate-90" />
           </a>
         </div>
 
-        <div className="animate-fade-in delay-700 mt-14 flex flex-wrap justify-center gap-6 text-sm text-white/60">
-          <div className="flex items-center gap-2">
+        <div className="animate-fade-in delay-700 mt-10 sm:mt-14 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-white/60">
+          <div className="flex items-center justify-center gap-2">
             <Clock className="w-4 h-4 text-gold" />
             <span>Departs daily at 9:00 AM</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <Users className="w-4 h-4 text-gold" />
             <span>Small groups only</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <Fish className="w-4 h-4 text-gold" />
             <span>Fresh seafood on board</span>
           </div>
         </div>
 
-        <div className="animate-fade-in delay-800 mt-16">
+        <div className="animate-fade-in delay-800 mt-10 sm:mt-16 hidden sm:block">
           <a
             href="#experience"
             className="inline-flex flex-col items-center gap-2 text-white/40 hover:text-gold transition-colors"
@@ -225,20 +221,20 @@ const highlights = [
 
 function ExperienceSection() {
   return (
-    <section id="experience" className="relative py-24 md:py-32 bg-experience">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+    <section id="experience" className="relative py-16 sm:py-24 md:py-32 bg-experience">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
           <div className="divider-dots justify-center mb-6">
             <span />
             <span />
             <span />
           </div>
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight">
+          <h2 className="font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight">
             Live the Life of
             <br />a Fisherman
           </h2>
-          <div className="gold-line mx-auto mt-6" />
-          <p className="mt-8 text-lg text-text-muted leading-relaxed max-w-2xl mx-auto">
+          <div className="gold-line mx-auto mt-5 sm:mt-6" />
+          <p className="mt-6 sm:mt-8 text-base sm:text-lg text-text-muted leading-relaxed max-w-2xl mx-auto">
             Step aboard our traditional wooden boat and discover a side of
             Skiathos most visitors never see. We&apos;ll take you to hidden
             fishing grounds where locals have cast their nets for generations —
@@ -247,7 +243,7 @@ function ExperienceSection() {
         </div>
 
         {/* Photo strip — 3 real images */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-12 sm:mb-20">
           <div className="relative aspect-3/2 rounded-2xl overflow-hidden">
             <Image
               src="/images/IMG_1364.JPG"
@@ -277,9 +273,9 @@ function ExperienceSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {highlights.map((item) => (
-            <div key={item.id} className="highlight-card rounded-2xl p-8 group">
+            <div key={item.id} className="highlight-card rounded-2xl p-6 sm:p-8 group">
               <div className="w-14 h-14 rounded-xl bg-gold-dim flex items-center justify-center text-gold mb-5 group-hover:bg-gold group-hover:text-white transition-all">
                 {item.icon}
               </div>
@@ -300,11 +296,11 @@ function ExperienceSection() {
 /* ─── Taste the Sea · bento food gallery ──────────────────── */
 function TasteTheSeaSection() {
   return (
-    <section className="bg-about py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="bg-about py-16 sm:py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-14">
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-navy leading-tight">
+        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+          <h2 className="font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl font-bold text-navy leading-tight">
             Taste the <span className="text-gold">Sea</span>
           </h2>
           <div className="gold-line mx-auto mt-6" />
@@ -441,24 +437,24 @@ const reasons = [
 
 function WhyUsSection() {
   return (
-    <section id="why-us" className="bg-navy py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+    <section id="why-us" className="bg-navy py-16 sm:py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <h2 className="font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
             Why Choose <span className="text-gold">Our Tours</span>
           </h2>
           <div className="gold-line mx-auto mt-6" />
-          <p className="mt-8 text-lg text-white/60 leading-relaxed max-w-xl mx-auto">
+          <p className="mt-6 sm:mt-8 text-base sm:text-lg text-white/60 leading-relaxed max-w-xl mx-auto">
             We don&apos;t offer just another boat trip. We offer a day
             you&apos;ll never forget.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 max-w-4xl mx-auto">
           {reasons.map((item) => (
             <div
               key={item.id}
-              className="flex gap-5 p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-gold/30 transition-all"
+              className="flex gap-4 sm:gap-5 p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-gold/30 transition-all"
             >
               <div className="shrink-0 w-14 h-14 rounded-xl bg-gold/15 flex items-center justify-center text-gold">
                 {item.icon}
@@ -491,10 +487,10 @@ function WhyUsSection() {
 /* ─── About · warm sand with boat photo ───────────────────── */
 function AboutSection() {
   return (
-    <section id="about" className="py-24 md:py-32 bg-cream">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="about" className="py-16 sm:py-24 md:py-32 bg-cream">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
             {/* Left — photo of the boat */}
             <div className="relative">
               <div className="relative aspect-4/5 rounded-3xl overflow-hidden">
@@ -516,7 +512,7 @@ function AboutSection() {
                 <span />
                 <span />
               </div>
-              <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-navy leading-tight">
+              <h2 className="font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl font-bold text-navy leading-tight">
                 Who We Are
               </h2>
               <div className="gold-line mt-6" />
@@ -560,9 +556,9 @@ function AboutSection() {
 /* ─── Booking · deep navy ─────────────────────────────────── */
 function BookingSection() {
   return (
-    <section id="booking" className="bg-booking py-24 md:py-32">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+    <section id="booking" className="bg-booking py-16 sm:py-24 md:py-32">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h2 className="font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
           Be a Fisherman
           <br />
           <span className="text-gold">for a Day</span>
@@ -578,8 +574,8 @@ function BookingSection() {
           </span>
         </p>
 
-        <div className="mt-14 bg-white/5 border border-white/10 rounded-3xl p-10 md:p-14 max-w-2xl mx-auto">
-          <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl font-bold text-white mb-3">
+        <div className="mt-10 sm:mt-14 bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-14 max-w-2xl mx-auto">
+          <h3 className="font-[family-name:var(--font-playfair)] text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3">
             Book Your Experience
           </h3>
           <p className="text-white/50 mb-10">
@@ -588,10 +584,10 @@ function BookingSection() {
             Spots are limited — we keep groups small on purpose.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5">
             <a
               href={`tel:${PHONE}`}
-              className="cta-phone inline-flex items-center gap-3 px-10 py-5 rounded-full text-lg font-bold tracking-wide w-full sm:w-auto justify-center"
+              className="cta-phone inline-flex items-center gap-3 px-6 sm:px-10 py-4 sm:py-5 rounded-full text-base sm:text-lg font-bold tracking-wide w-full sm:w-auto justify-center"
             >
               <Phone className="w-5 h-5" />
               {PHONE_DISPLAY}
@@ -600,7 +596,7 @@ function BookingSection() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="cta-whatsapp inline-flex items-center gap-3 px-10 py-5 rounded-full text-lg font-bold tracking-wide w-full sm:w-auto justify-center"
+              className="cta-whatsapp inline-flex items-center gap-3 px-6 sm:px-10 py-4 sm:py-5 rounded-full text-base sm:text-lg font-bold tracking-wide w-full sm:w-auto justify-center"
             >
               <WhatsAppIcon className="w-5 h-5" />
               WhatsApp
@@ -643,32 +639,6 @@ function Footer() {
   );
 }
 
-/* ─── Sticky Mobile CTA ──────────────────────────────────── */
-function StickyCTA() {
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden sticky-cta p-3">
-      <div className="flex items-center gap-3">
-        <a
-          href={`tel:${PHONE}`}
-          className="cta-phone flex-1 inline-flex items-center justify-center gap-2 py-3.5 rounded-full text-sm font-bold"
-        >
-          <Phone className="w-4 h-4" />
-          Call Now
-        </a>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cta-whatsapp flex-1 inline-flex items-center justify-center gap-2 py-3.5 rounded-full text-sm font-bold"
-        >
-          <WhatsAppIcon className="w-4 h-4" />
-          WhatsApp
-        </a>
-      </div>
-    </div>
-  );
-}
-
 /* ─── Page ────────────────────────────────────────────────── */
 export default function Home() {
   return (
@@ -681,7 +651,6 @@ export default function Home() {
       <AboutSection />
       <BookingSection />
       <Footer />
-      <StickyCTA />
     </>
   );
 }
