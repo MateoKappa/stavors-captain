@@ -1,26 +1,206 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy: #0B1D3A;
+  --navy-light: #122B52;
+  --aegean: #1A5276;
+  --aegean-light: #2980B9;
+  --gold: #C4943E;
+  --gold-light: #D4A853;
+  --gold-dim: rgba(196, 148, 62, 0.15);
+  --cream: #FAF6F0;
+  --cream-dark: #F0EAE0;
+  --sand: #E8DFD0;
+  --white: #FFFFFF;
+  --text-dark: #1A1A1A;
+  --text-muted: #5A6A7A;
+  --seafoam: #A8C5C8;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --color-aegean: var(--aegean);
+  --color-aegean-light: var(--aegean-light);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dim: var(--gold-dim);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-sand: var(--sand);
+  --color-seafoam: var(--seafoam);
+  --color-text-dark: var(--text-dark);
+  --color-text-muted: var(--text-muted);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--cream);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--sand);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* ── Animations ────────────────────────── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .animate-fade-in-up { animation: fadeInUp 0.9s ease-out both; }
+  .animate-fade-in { animation: fadeIn 1s ease-out both; }
+  .animate-float { animation: gentleFloat 4s ease-in-out infinite; }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-600 { animation-delay: 0.6s; }
+  .delay-700 { animation-delay: 0.7s; }
+  .delay-800 { animation-delay: 0.8s; }
+
+  /* ── Gold accent line ─────────────────── */
+  .gold-line {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 2px;
+  }
+
+  /* ── Section backgrounds ────────────────
+     The visual journey: shore → deck → water → warmth → deep sea
+  ─────────────────────────────────────────── */
+
+  /* Hero: warm cream with subtle atmospheric glows */
+  .bg-hero {
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(26, 82, 118, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(196, 148, 62, 0.08) 0%, transparent 50%),
+      var(--cream);
+  }
+
+  /* Experience: clean white — crisp contrast from cream hero */
+  .bg-experience {
+    background: var(--white);
+  }
+
+  /* Why Us: aegean blue — the midwater, not full navy */
+  .bg-why-us {
+    background:
+      linear-gradient(180deg, var(--aegean) 0%, #153F5E 100%);
+  }
+
+  /* About: warm sand with a subtle gradient — the wooden deck */
+  .bg-about {
+    background:
+      linear-gradient(180deg, var(--sand) 0%, var(--cream-dark) 100%);
+  }
+
+  /* Booking: deep navy — the deep sea, closing moment */
+  .bg-booking {
+    background:
+      linear-gradient(180deg, var(--navy) 0%, #071222 100%);
+  }
+
+  /* ── CTA button styles ────────────────── */
+  .cta-phone {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(196, 148, 62, 0.3);
+    text-decoration: none;
+  }
+
+  .cta-phone:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(196, 148, 62, 0.45);
+  }
+
+  .cta-whatsapp {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.25);
+    text-decoration: none;
+  }
+
+  .cta-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+  }
+
+  /* ── Highlight card (on white bg) ────── */
+  .highlight-card {
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    transition: all 0.4s ease;
+  }
+
+  .highlight-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(11, 29, 58, 0.08);
+    border-color: var(--gold);
+  }
+
+  /* ── Section divider dots ─────────────── */
+  .divider-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .divider-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .divider-dots span:nth-child(2) {
+    width: 8px;
+    height: 8px;
+    opacity: 1;
+  }
+
+  /* ── Sticky CTA bar ───────────────────── */
+  .sticky-cta {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(11, 29, 58, 0.92);
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.15);
+  }
 }
