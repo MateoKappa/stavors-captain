@@ -100,11 +100,11 @@
     border-radius: 2px;
   }
 
-  /* ── Section backgrounds ────────────────
+  /* ── Section backgrounds + textures ──────
      The visual journey: shore → deck → water → warmth → deep sea
   ─────────────────────────────────────────── */
 
-  /* Hero: warm cream with subtle atmospheric glows */
+  /* Hero: warm cream with atmospheric glows */
   .bg-hero {
     background:
       radial-gradient(ellipse at 20% 50%, rgba(26, 82, 118, 0.12) 0%, transparent 60%),
@@ -112,27 +112,128 @@
       var(--cream);
   }
 
-  /* Experience: clean white — crisp contrast from cream hero */
+  /* Experience: white with scattered compass dots */
   .bg-experience {
+    position: relative;
     background: var(--white);
   }
 
-  /* Why Us: aegean blue — the midwater, not full navy */
-  .bg-why-us {
-    background:
-      linear-gradient(180deg, var(--aegean) 0%, #153F5E 100%);
+  .bg-experience::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, var(--gold) 1px, transparent 1px),
+      radial-gradient(circle, var(--sand) 1px, transparent 1px);
+    background-size: 40px 40px, 20px 20px;
+    background-position: 0 0, 10px 10px;
+    opacity: 0.15;
+    pointer-events: none;
   }
 
-  /* About: warm sand with a subtle gradient — the wooden deck */
+  /* About: warm sand with decorative wave lines + gold glow */
   .bg-about {
+    position: relative;
     background:
       linear-gradient(180deg, var(--sand) 0%, var(--cream-dark) 100%);
+    overflow: hidden;
   }
 
-  /* Booking: deep navy — the deep sea, closing moment */
+  .bg-about::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg width='200' height='40' viewBox='0 0 200 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q25 5 50 20 T100 20 T150 20 T200 20' fill='none' stroke='%23C4943E' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E");
+    background-size: 200px 40px;
+    background-repeat: repeat;
+    pointer-events: none;
+  }
+
+  .bg-about::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196, 148, 62, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Navy texture: compass rings + warm glow accents */
+  .bg-navy-texture {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bg-navy-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 40%, rgba(196, 148, 62, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(168, 197, 200, 0.05) 0%, transparent 35%);
+    pointer-events: none;
+  }
+
+  .bg-navy-texture::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%);
+    background-image:
+      radial-gradient(circle, transparent 120px, rgba(196, 148, 62, 0.04) 121px, transparent 123px),
+      radial-gradient(circle, transparent 200px, rgba(196, 148, 62, 0.03) 201px, transparent 203px),
+      radial-gradient(circle, transparent 280px, rgba(196, 148, 62, 0.025) 281px, transparent 283px),
+      radial-gradient(circle, transparent 360px, rgba(255, 255, 255, 0.02) 361px, transparent 363px);
+    pointer-events: none;
+  }
+
+  /* Booking: deep navy with nautical chart grid + gold glow */
   .bg-booking {
+    position: relative;
     background:
       linear-gradient(180deg, var(--navy) 0%, #071222 100%);
+    overflow: hidden;
+  }
+
+  .bg-booking::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 80px,
+        rgba(196, 148, 62, 0.04) 80px,
+        rgba(196, 148, 62, 0.04) 81px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(196, 148, 62, 0.03) 80px,
+        rgba(196, 148, 62, 0.03) 81px
+      );
+    pointer-events: none;
+  }
+
+  .bg-booking::after {
+    content: '';
+    position: absolute;
+    bottom: -15%;
+    left: 30%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196, 148, 62, 0.06) 0%, transparent 60%);
+    pointer-events: none;
   }
 
   /* ── CTA button styles ────────────────── */
